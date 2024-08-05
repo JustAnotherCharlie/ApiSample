@@ -73,6 +73,8 @@ dependencies {
     // Hilt
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.hilt.android)
+    implementation(libs.core.ktx)
+    implementation(libs.androidx.junit.ktx)
     kapt(libs.hilt.android.compiler)
 
     // Retrofit
@@ -102,4 +104,11 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // Mockito
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.kotlin)
+
+    // Testing - Kotlin Coroutines
+    testImplementation(libs.kotlinx.coroutines.test)
 }
