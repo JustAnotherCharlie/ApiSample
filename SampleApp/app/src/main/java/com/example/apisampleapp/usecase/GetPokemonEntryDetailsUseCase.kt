@@ -22,17 +22,17 @@ class GetPokemonEntryDetailsUseCase @Inject constructor(
 ) : UseCase<Int, UIPokemonEntry?>() {
 
     override suspend fun execute(input: Int): UIPokemonEntry? {
-        var uiEntry: UIPokemonEntry? = null
+        val uiEntry: UIPokemonEntry?
 
-            if (pokemonDao.entryExists(input)) {
-                val pokemonEntry = pokemonDao.findById(input)
-                uiEntry = mapEntityToUi(pokemonEntry)
-            } else {
-                val pokemonEntryDetails = repository.getPokemonEntryDetails(input)
-                uiEntry = mapResponseToUi(pokemonEntryDetails)?.apply {
-                    pokemonDao.insertAll(mapUiToEntity(this))
-                }
+        if (pokemonDao.entryExists(input)) {
+            val pokemonEntry = pokemonDao.findById(input)
+            uiEntry = mapEntityToUi(pokemonEntry)
+        } else {
+            val pokemonEntryDetails = repository.getPokemonEntryDetails(input)
+            uiEntry = mapResponseToUi(pokemonEntryDetails)?.apply {
+                pokemonDao.insertAll(mapUiToEntity(this))
             }
+        }
 
         return uiEntry
     }
