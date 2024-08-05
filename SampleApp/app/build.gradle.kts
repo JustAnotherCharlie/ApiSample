@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.compose.compiler)
     id("com.google.dagger.hilt.android")
     id("kotlin-kapt")
 }
@@ -11,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.apisampleapp"
-        minSdk = 24
+        minSdk = 23
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -32,17 +33,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
     }
     packaging {
         resources {
@@ -53,6 +51,10 @@ android {
 
 kapt {
     correctErrorTypes = true
+}
+
+hilt {
+    enableAggregatingTask = true
 }
 
 dependencies {
@@ -72,6 +74,26 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
+
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.moshi)
+
+    // Moshi
+    implementation(libs.moshi.kotlin)
+    kapt(libs.moshi.kotlin.codegen)
+
+    // Coil
+    implementation(libs.coil.compose)
+
+    // Room
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    annotationProcessor(libs.androidx.room.compiler)
+    kapt(libs.androidx.room.compiler)
+
+    // Shimmer
+    implementation(libs.compose.shimmer)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
