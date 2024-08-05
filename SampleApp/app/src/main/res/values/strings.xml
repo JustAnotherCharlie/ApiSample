@@ -1,3 +1,19 @@
 <resources>
+    <!-- Base App -->
     <string name="app_name">ApiSampleApp</string>
+
+    <!-- PokemonStat -->
+    <string name="type_hp_display">HP</string>
+    <string name="type_attack_display">Attack</string>
+    <string name="type_defense_display">Defense</string>
+    <string name="type_special_attack_display">Sp. Atk</string>
+    <string name="type_special_defense_display">Sp. Def</string>
+    <string name="type_speed_display">Speed</string>
+    <string name="type_undefined_display"> </string>
+
+    <!-- Home Screen -->
+    <string name="home_title">Pokemon API App</string>
+
+    <!-- Details Screen -->
+    <string name="details_base_stats">Base stats</string>
 </resources>
